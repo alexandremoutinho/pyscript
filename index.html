@@ -1,145 +1,255 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Formulário de Coligadas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário Coligadas</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
 
 <div class="container mt-5">
-    <h2>Formulário</h2>
-    <form id="myForm">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="id">ID</label>
-                <input type="text" class="form-control" id="id" readonly>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="coligada">Coligada</label>
-                <input type="text" class="form-control" id="coligada">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="contaCaixa">Conta Caixa</label>
-                <input type="text" class="form-control" id="contaCaixa">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="codigoBanco">Código do Banco</label>
-                <select class="form-control" id="codigoBanco">
-                    <option value="237">237</option>
-                    <option value="341">341</option>
-                    <option value="33">33</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="banco">Banco</label>
-                <select class="form-control" id="banco">
-                    <option value="Itau">Itaú</option>
-                    <option value="Bradesco">Bradesco</option>
-                    <option value="Santander">Santander</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="agencia">Agência</label>
-                <input type="text" class="form-control" id="agencia">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="contaEmpreendimento">Conta Empreendimento</label>
-                <input type="text" class="form-control" id="contaEmpreendimento">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="tipoRetorno">Tipo Retorno</label>
-                <input type="text" class="form-control" id="tipoRetorno">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="cnab">CNAB</label>
-                <select class="form-control" id="cnab">
-                    <option value="240">240</option>
-                    <option value="400">400</option>
-                </select>
-            </div>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="addRow()">Inserir</button>
-    </form>
-
-    <div class="mt-4">
-        <input type="text" class="form-control" id="search" placeholder="Pesquisar por ID, Banco ou CNAB">
+  <form id="coligadasForm">
+    <div class="form-row">
+      <div class="form-group col-md-2">
+        <label for="id">Id</label>
+        <input type="text" class="form-control" id="id" readonly>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="coligada">Coligada</label>
+        <input type="text" class="form-control" id="coligada" required>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="contaCaixa">Conta Caixa</label>
+        <input type="text" class="form-control" id="contaCaixa" required>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="codigoBanco">Código do Banco</label>
+        <select class="form-control" id="codigoBanco" required>
+          <option value="237">237</option>
+          <option value="341">341</option>
+          <option value="33">33</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="banco">Banco</label>
+        <select class="form-control" id="banco" required>
+          <option value="Itaú">Itaú</option>
+          <option value="Bradesco">Bradesco</option>
+          <option value="Santander">Santander</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="agencia">Agência</label>
+        <input type="text" class="form-control" id="agencia" required>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="conta">Conta</label>
+        <input type="text" class="form-control" id="conta" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="empreendimento">Empreendimento</label>
+        <input type="text" class="form-control" id="empreendimento" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="tipoRetorno">Tipo Retorno</label>
+        <select class="form-control" id="tipoRetorno" required>
+          <option value="Pagamento">Pagamento</option>
+          <option value="Recebimento">Recebimento</option>
+          <option value="Extrato">Extrato</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="cnab">CNAB</label>
+        <select class="form-control" id="cnab" required>
+          <option value="240">240</option>
+          <option value="400">400</option>
+        </select>
+      </div>
     </div>
+    <button type="button" class="btn btn-primary" onclick="adicionarRegistro()">Adicionar</button>
+  </form>
 
-    <table class="table mt-4">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Coligada</th>
-            <th>Conta Caixa</th>
-            <th>Código do Banco</th>
-            <th>Banco</th>
-            <th>Agência</th>
-            <th>Conta Empreendimento</th>
-            <th>Tipo Retorno</th>
-            <th>CNAB</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody id="tableBody"></tbody>
-    </table>
+  <div class="mt-4">
+    <label for="filtro">Filtrar por Banco, Id ou CNAB:</label>
+    <input type="text" class="form-control" id="filtro" oninput="filtrarRegistros()">
+  </div>
+
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Coligada</th>
+        <th>Conta Caixa</th>
+        <th>Código do Banco</th>
+        <th>Banco</th>
+        <th>Agência</th>
+        <th>Conta</th>
+        <th>Empreendimento</th>
+        <th>Tipo Retorno</th>
+        <th>CNAB</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaCorpo"></tbody>
+  </table>
+
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script>
-    var idCounter = 1;
+  let registros = [];
 
-    function addRow() {
-        var id = idCounter++;
-        var coligada = document.getElementById('coligada').value;
-        var contaCaixa = document.getElementById('contaCaixa').value;
-        var codigoBanco = document.getElementById('codigoBanco').value;
-        var banco = document.getElementById('banco').value;
-        var agencia = document.getElementById('agencia').value;
-        var contaEmpreendimento = document.getElementById('contaEmpreendimento').value;
-        var tipoRetorno = document.getElementById('tipoRetorno').value;
-        var cnab = document.getElementById('cnab').value;
+  function adicionarRegistro() {
+    const novoRegistro = {
+      id: generateUniqueId(),
+      coligada: document.getElementById('coligada').value,
+      contaCaixa: document.getElementById('contaCaixa').value,
+      codigoBanco: document.getElementById('codigoBanco').value,
+      banco: document.getElementById('banco').value,
+      agencia: document.getElementById('agencia').value,
+      conta: document.getElementById('conta').value,
+      empreendimento: document.getElementById('empreendimento').value,
+      tipoRetorno: document.getElementById('tipoRetorno').value,
+      cnab: document.getElementById('cnab').value,
+    };
 
-        var tableBody = document.getElementById('tableBody');
-        var newRow = tableBody.insertRow();
-        newRow.innerHTML = `
-            <td>${id}</td>
-            <td>${coligada}</td>
-            <td>${contaCaixa}</td>
-            <td>${codigoBanco}</td>
-            <td>${banco}</td>
-            <td>${agencia}</td>
-            <td>${contaEmpreendimento}</td>
-            <td>${tipoRetorno}</td>
-            <td>${cnab}</td>
-            <td>
-                <button type="button" class="btn btn-warning btn-sm" onclick="editRow(${id})">Editar</button>
-                <button type="button" class="btn btn-danger btn-sm" onclick="deleteRow(${id})">Deletar</button>
-            </td>
-        `;
-    }
+    registros.push(novoRegistro);
+    exibirRegistros();
+    limparFormulario();
+  }
 
-    function editRow(id) {
-        // Implementar a lógica de edição aqui
-        alert('Editar ID ' + id);
-    }
+  function exibirRegistros() {
+    const tabelaCorpo = document.getElementById('tabelaCorpo');
+    tabelaCorpo.innerHTML = '';
 
-    function deleteRow(id) {
-        // Implementar a lógica de exclusão aqui
-        alert('Deletar ID ' + id);
-    }
+    registros.forEach(registro => {
+      const row = tabelaCorpo.insertRow();
+
+      for (const key in registro) {
+        if (registro.hasOwnProperty(key)) {
+          const cell = row.insertCell();
+          cell.textContent = registro[key];
+        }
+      }
+
+      const cellAcoes = row.insertCell();
+      const btnEditar = document.createElement('button');
+      btnEditar.textContent = 'Editar';
+      btnEditar.classList.add('btn', 'btn-warning', 'btn-sm', 'mr-1');
+      btnEditar.onclick = () => editarRegistro(registro.id);
+
+      const btnExcluir = document.createElement('button');
+      btnExcluir.textContent = 'Excluir';
+      btnExcluir.classList.add('btn', 'btn-danger', 'btn-sm');
+      btnExcluir.onclick = () => excluirRegistro(registro.id);
+
+      cellAcoes.appendChild(btnEditar);
+      cellAcoes.appendChild(btnExcluir);
+    });
+  }
+
+  function editarRegistro(id) {
+    const registro = registros.find(r => r.id === id);
+
+    document.getElementById('id').value = registro.id;
+    document.getElementById('coligada').value = registro.coligada;
+    document.getElementById('contaCaixa').value = registro.contaCaixa;
+    document.getElementById('codigoBanco').value = registro.codigoBanco;
+    document.getElementById('banco').value = registro.banco;
+    document.getElementById('agencia').value = registro.agencia;
+    document.getElementById('conta').value = registro.conta;
+    document.getElementById('empreendimento').value = registro.empreendimento;
+    document.getElementById('tipoRetorno').value = registro.tipoRetorno;
+    document.getElementById('cnab').value = registro.cnab;
+  }
+
+  function excluirRegistro(id) {
+    registros = registros.filter(r => r.id !== id);
+    exibirRegistros();
+  }
+
+  function limparFormulario() {
+    document.getElementById('id').value = '';
+    document.getElementById('coligada').value = '';
+    document.getElementById('contaCaixa').value = '';
+    document.getElementById('codigoBanco').value = '';
+    document.getElementById('banco').value = '';
+    document.getElementById('agencia').value = '';
+    document.getElementById('conta').value = '';
+    document.getElementById('empreendimento').value = '';
+    document.getElementById('tipoRetorno').value = '';
+    document.getElementById('cnab').value = '';
+  }
+
+  function generateUniqueId() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  function filtrarRegistros() {
+    const filtro = document.getElementById('filtro').value.toLowerCase();
+
+    const registrosFiltrados = registros.filter(registro =>
+      Object.values(registro).some(valor => valor.toString().toLowerCase().includes(filtro))
+    );
+
+    exibirRegistros(registrosFiltrados);
+  }
+
+  ///-------------------------------------------< Atulizar Dados >-----------------------------------///
+ 
+  function editarRegistro(id) {
+    const registro = registros.find(r => r.id === id);
+
+    document.getElementById('id').value = registro.id;
+    document.getElementById('coligada').value = registro.coligada;
+    document.getElementById('contaCaixa').value = registro.contaCaixa;
+    document.getElementById('codigoBanco').value = registro.codigoBanco;
+    document.getElementById('banco').value = registro.banco;
+    document.getElementById('agencia').value = registro.agencia;
+    document.getElementById('conta').value = registro.conta;
+    document.getElementById('empreendimento').value = registro.empreendimento;
+    document.getElementById('tipoRetorno').value = registro.tipoRetorno;
+    document.getElementById('cnab').value = registro.cnab;
+
+    // Altera o texto e a ação do botão para "Atualizar"
+    const btnAdicionar = document.querySelector('button[type="button"]');
+    btnAdicionar.textContent = 'Atualizar';
+    btnAdicionar.onclick = () => atualizarRegistro(id);
+  }
+
+  function atualizarRegistro(id) {
+    // Encontra o registro pelo ID
+    const registroIndex = registros.findIndex(r => r.id === id);
+
+    // Atualiza os dados do registro
+    registros[registroIndex].coligada = document.getElementById('coligada').value;
+    registros[registroIndex].contaCaixa = document.getElementById('contaCaixa').value;
+    registros[registroIndex].codigoBanco = document.getElementById('codigoBanco').value;
+    registros[registroIndex].banco = document.getElementById('banco').value;
+    registros[registroIndex].agencia = document.getElementById('agencia').value;
+    registros[registroIndex].conta = document.getElementById('conta').value;
+    registros[registroIndex].empreendimento = document.getElementById('empreendimento').value;
+    registros[registroIndex].tipoRetorno = document.getElementById('tipoRetorno').value;
+    registros[registroIndex].cnab = document.getElementById('cnab').value;
+
+    // Volta o texto e a ação do botão para "Adicionar"
+    const btnAdicionar = document.querySelector('button[type="button"]');
+    btnAdicionar.textContent = 'Adicionar';
+    btnAdicionar.onclick = adicionarRegistro;
+
+    // Limpa o formulário
+    limparFormulario();
+
+    // Exibe os registros atualizados na tabela
+    exibirRegistros();
+  }
+
+
+
+
 </script>
 
 </body>
