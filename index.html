@@ -1,16 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <link
-        rel="stylesheet"
-        href="https://pyscript.net/releases/2023.11.2/core.css"
-    />
-    <script
-        type="module"
-        src="https://pyscript.net/releases/2023.11.2/core.js"
-    ></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Formulário de Coligadas</title>
 </head>
 <body>
-    <script type="py" terminal>
-        from pyscript import display
-        display("Hello World!") # this goes to the DOM
-    </script>
+
+<div class="container mt-5">
+    <h2>Formulário</h2>
+    <form id="myForm">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="id">ID</label>
+                <input type="text" class="form-control" id="id" readonly>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="coligada">Coligada</label>
+                <input type="text" class="form-control" id="coligada">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="contaCaixa">Conta Caixa</label>
+                <input type="text" class="form-control" id="contaCaixa">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="codigoBanco">Código do Banco</label>
+                <select class="form-control" id="codigoBanco">
+                    <option value="237">237</option>
+                    <option value="341">341</option>
+                    <option value="33">33</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="banco">Banco</label>
+                <select class="form-control" id="banco">
+                    <option value="Itau">Itaú</option>
+                    <option value="Bradesco">Bradesco</option>
+                    <option value="Santander">Santander</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="agencia">Agência</label>
+                <input type="text" class="form-control" id="agencia">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="contaEmpreendimento">Conta Empreendimento</label>
+                <input type="text" class="form-control" id="contaEmpreendimento">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="tipoRetorno">Tipo Retorno</label>
+                <input type="text" class="form-control" id="tipoRetorno">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="cnab">CNAB</label>
+                <select class="form-control" id="cnab">
+                    <option value="240">240</option>
+                    <option value="400">400</option>
+                </select>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="addRow()">Inserir</button>
+    </form>
+
+    <div class="mt-4">
+        <input type="text" class="form-control" id="search" placeholder="Pesquisar por ID, Banco ou CNAB">
+    </div>
+
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Coligada</th>
+            <th>Conta Caixa</th>
+            <th>Código do Banco</th>
+            <th>Banco</th>
+            <th>Agência</th>
+            <th>Conta Empreendimento</th>
+            <th>Tipo Retorno</th>
+            <th>CNAB</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    var idCounter = 1;
+
+    function addRow() {
+        var id = idCounter++;
+        var coligada = document.getElementById('coligada').value;
+        var contaCaixa = document.getElementById('contaCaixa').value;
+        var codigoBanco = document.getElementById('codigoBanco').value;
+        var banco = document.getElementById('banco').value;
+        var agencia = document.getElementById('agencia').value;
+        var contaEmpreendimento = document.getElementById('contaEmpreendimento').value;
+        var tipoRetorno = document.getElementById('tipoRetorno').value;
+        var cnab = document.getElementById('cnab').value;
+
+        var tableBody = document.getElementById('tableBody');
+        var newRow = tableBody.insertRow();
+        newRow.innerHTML = `
+            <td>${id}</td>
+            <td>${coligada}</td>
+            <td>${contaCaixa}</td>
+            <td>${codigoBanco}</td>
+            <td>${banco}</td>
+            <td>${agencia}</td>
+            <td>${contaEmpreendimento}</td>
+            <td>${tipoRetorno}</td>
+            <td>${cnab}</td>
+            <td>
+                <button type="button" class="btn btn-warning btn-sm" onclick="editRow(${id})">Editar</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="deleteRow(${id})">Deletar</button>
+            </td>
+        `;
+    }
+
+    function editRow(id) {
+        // Implementar a lógica de edição aqui
+        alert('Editar ID ' + id);
+    }
+
+    function deleteRow(id) {
+        // Implementar a lógica de exclusão aqui
+        alert('Deletar ID ' + id);
+    }
+</script>
+
 </body>
+</html>
